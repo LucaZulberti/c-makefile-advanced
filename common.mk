@@ -13,8 +13,8 @@ SRCDIRS := $(shell find src/ -type d)
 OBJDIRS := $(addprefix $(OBJDIR)/,$(SRCDIRS))
 
 # Common flags
-CFLAGS  := -O2 -Wall -I$(INCDIR)
-LDFLAGS := -L$(OBJDIR)
+CFLAGS  += -I$(INCDIR)
+LDFLAGS += -L$(OBJDIR)
 
 # Default rule
 .PHONY: all
