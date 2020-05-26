@@ -18,8 +18,8 @@ LDFLAGS += -L$(OBJDIR)
 
 # Default rule
 .PHONY: all
-all: $(TARGETS)
-	@echo All targets have been compiled successfully.
+all: $(TARGETS) $(LIBS)
+	@echo All targets and libraries have been compiled successfully.
 
 # Directories and clean
 $(OBJDIRS):
