@@ -46,13 +46,16 @@ $1_LDFLAGS  = -L$(OUTDIR)
 $1_LDFLAGS += $$(foreach lib,$$($1_LIBS),-l$$(lib))
 $1_LDFLAGS += $$(foreach lib,$$($1_SYSLIBS),-l$$(lib))
 
+# Lib dependecies
+$1_LIBS_DEP = $$(addprefix $(OUTDIR)/lib, $$(addsuffix .a, $$($1_LIBS)))
+
 # Add .h dependecies
 -include $$($1_OBJS:.o=.d)
 
 # Rules
 $1: $(OUTDIR)/$1
 
-$(OUTDIR)/$1: $$($1_OBJS) $$($1_LIBS) | $(OUTDIR)
+$(OUTDIR)/$1: $$($1_OBJS) $$($1_LIBS_DEP) | $(OUTDIR)
 	$(CC) $(LDFLAGS) -o $$@ $$(filter %.o,$$^) $$($1_LDFLAGS)
 	@echo Target $1 compiled successfully.
 
